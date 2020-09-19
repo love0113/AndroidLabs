@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab1</string>
-    <string name="hello_message">你好!</string>
-    <string name="ButtonText">我是一个按钮，哈哈！</string>
+    <string name="app_name">Lab2</string>
+    <string name="Look_at_my_GUI">请看我的GUI</string>
+    <string name="Button_Text">点击这里，哈哈！</string>
+    <string name="Check_Box_Text">瞧一瞧!</string>
+    <string name="Switch_Text">开关</string>
+    <string name="Edit_Text">在此输入</string>
+    <string name="toast_message">更多信息在这里.</string>
+    <string name="switch_message">开关已开!</string>
+    <string name="switch_message1">撤销!</string>
+
 </resources>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Look_at_my_GUI"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        android:text="@string/Button_Text"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/textView2"
+        android:layout_toLeftOf="@id/imageButton"/>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/flag"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/textView2"
+        />
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Check_Box_Text"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/imageButton"
+        android:layout_toLeftOf="@id/imageButton"/>
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:text="@string/Switch_Text"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/imageButton"
+        android:layout_toRightOf="@id/checkBox"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:hint="@string/Edit_Text"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/checkBox"/>
+
+</RelativeLayout>
