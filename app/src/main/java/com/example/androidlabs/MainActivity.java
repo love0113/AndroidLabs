@@ -19,14 +19,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn = findViewById(R.id.button4);
         btn.setOnClickListener(v ->
-           Toast.makeText(this, R.string.toast_message, Toast.LENGTH_LONG).show());
+                Toast.makeText(this, R.string.toast_message, Toast.LENGTH_LONG).show());
 
         Switch aSwitch = findViewById(R.id.switch1);
         aSwitch.setOnCheckedChangeListener( (buttonView, isChecked)->{
-           Snackbar.make(aSwitch, R.string.switch_message, Snackbar.LENGTH_INDEFINITE)
-                        .setAction( R.string.switch_message1, v ->aSwitch.setChecked(!isChecked))
-                        .show();
-
+            Snackbar.make(aSwitch, R.string.switch_message, Snackbar.LENGTH_INDEFINITE)
+                    .setAction( R.string.switch_message1, v ->aSwitch.setChecked(!isChecked))
+                    .show();
             });
         }
     }

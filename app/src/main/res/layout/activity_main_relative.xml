@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Look_at_my_GUI"
@@ -21,7 +21,7 @@
         android:id="@+id/button4"
         android:text="@string/Button_Text"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/textView2"
+        android:layout_below="@id/textView"
         android:layout_toLeftOf="@id/imageButton"/>
 
     <ImageButton
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/flag"
         android:layout_alignParentRight="true"
-        android:layout_below="@id/textView2"
+        android:layout_below="@id/textView"
         />
     <CheckBox
         android:id="@+id/checkBox"
