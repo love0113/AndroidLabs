@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">lab2</string>
+    <string name="app_name">Lab2</string>
     <string name="Look_at_my_GUI">Bonjour,Regarder mon GUI!</string>
     <string name="Button_Text">je suis un bouton </string>
     <string name="Check_Box_Text">Regarder ici!</string>
