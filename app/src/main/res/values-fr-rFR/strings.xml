@@ -8,7 +8,8 @@
     <string name="Edit_Text">écrivez ici</string>
     <string name="toast_message">voici plus des informations!</string>
     <string name="switch_message">La Switch est activé maintenant!!</string>
-    <string name="switch_message1">Annuler!!</string>
+    <string name="switch_message1">La Switch est fermer maintenant!!!!</string>
+    <string name="switch_message2">Annuler!!</string>
 
 
 

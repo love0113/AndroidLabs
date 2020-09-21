@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -22,10 +23,21 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.toast_message, Toast.LENGTH_LONG).show());
 
         Switch aSwitch = findViewById(R.id.switch1);
-        aSwitch.setOnCheckedChangeListener( (buttonView, isChecked)->{
-            Snackbar.make(aSwitch, R.string.switch_message, Snackbar.LENGTH_INDEFINITE)
-                    .setAction( R.string.switch_message1, v ->aSwitch.setChecked(!isChecked))
-                    .show();
-            });
-        }
+        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked == true) {
+                    Snackbar.make(aSwitch, R.string.switch_message,   Snackbar.LENGTH_INDEFINITE)
+                            .setAction( R.string.switch_message2, v ->aSwitch.setChecked(isChecked))
+                            .show();
+                } else {
+                    Snackbar.make(aSwitch, R.string.switch_message1, Snackbar.LENGTH_INDEFINITE)
+                            .setAction( R.string.switch_message2, v ->aSwitch.setChecked(!isChecked))
+                            .show();
+                }
+
+            }
+
+        });
     }
+}

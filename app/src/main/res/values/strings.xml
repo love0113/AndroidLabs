@@ -7,7 +7,8 @@
     <string name="Edit_Text">Type here</string>
     <string name="toast_message">Here is more information.</string>
     <string name="switch_message">The switch is on now.</string>
-    <string name="switch_message1">Undo.</string>
+    <string name="switch_message1">The switch is off now.</string>
+    <string name="switch_message2">Undo!!</string>
 
 
 
