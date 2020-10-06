@@ -1,15 +1,18 @@
 <resources>
-    <string name="app_name">Lab2</string>
-    <string name="Look_at_my_GUI">Look at my GUI</string>
-    <string name="Button_Text">CLICK HERE</string>
-    <string name="Check_Box_Text">Check this out!</string>
-    <string name="Switch_Text">Switch on / off</string>
-    <string name="Edit_Text">Type here</string>
-    <string name="toast_message">Here is more information.</string>
-    <string name="switch_message">The switch is on now.</string>
-    <string name="switch_message1">The switch is off now.</string>
-    <string name="switch_message2">Undo!!</string>
-
+    <string name="app_name">Lab3</string>
+    <string name="login_label">Enter your email address:</string>
+    <string name="login_hint_message">Type Email here</string>
+    <string name="password_label">Type your password:</string>
+    <string name="password_hint_message"> </string>
+    <string name="loginButtonLabel">Login</string>
+    <string name="your_profile">Your profile</string>
+    <string name="your_name">Your name:</string>
+    <string name="Enter_yourname_hint_message">Enter your name</string>
+    <string name="Email_label">Your email:</string>
+    <string name="Email_hint_message">Enter your email</string>
+    <string name="your_picture_label">Your Picture</string>
+    <string name="ButtonLabel"></string>
+    <string name="take_picture_label">Click the button above to take a picture</string>
 
 
 

@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab2</string>
-    <string name="Look_at_my_GUI">请看我的GUI</string>
-    <string name="Button_Text">点击这里，哈哈！</string>
-    <string name="Check_Box_Text">瞧一瞧!</string>
-    <string name="Switch_Text">开关</string>
-    <string name="Edit_Text">在此输入</string>
-    <string name="toast_message">更多信息在这里.</string>
-    <string name="switch_message">开关已开!</string>
-    <string name="switch_message1">开关已关!</string>
-    <string name="switch_message2">撤销!!</string>
+    <string name="app_name">Lab3</string>
+    <string name="login_label">请输入你的邮箱地址</string>
+    <string name="login_hint_message">请在这里输入邮箱</string>
+    <string name="password_label">请输入您的密码</string>
+    <string name="password_hint_message"> </string>
+    <string name="loginButtonLabel">你好</string>
+    <string name="your_profile">Your profile</string>
+    <string name="your_name">Your name:</string>
+    <string name="Enter_yourname_hint_message">Enter your name</string>
+    <string name="Email_label">Your email:</string>
+    <string name="Email_hint_message">Enter your email</string>
+    <string name="your_picture_label">Your Picture</string>
+    <string name="ButtonLabel"></string>
+    <string name="take_picture_label">Click the button above to take a picture</string>
 
 </resources>

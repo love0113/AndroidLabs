@@ -2,6 +2,9 @@ package com.example.androidlabs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -12,32 +15,31 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
-
+       private SharedPreferences prefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_relative);
+        setContentView(R.layout.activity_main_linear);
 
-        Button btn = findViewById(R.id.button4);
-        btn.setOnClickListener(v ->
-                Toast.makeText(this, R.string.toast_message, Toast.LENGTH_LONG).show());
+        prefs = getSharedPreferences("account", Context.MODE_PRIVATE);
+        String emailAddress = prefs.getString("emailText","");
+        String password = prefs.getString("passwordText", "");
+        EditText emailEditText=findViewById(R.id.emailField);
+        emailEditText.setText(emailAddress);
+        EditText passwordEditText=findViewById(R.id.passwordField);
 
-        Switch aSwitch = findViewById(R.id.switch1);
-        aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked == true) {
-                    Snackbar.make(aSwitch, R.string.switch_message,   Snackbar.LENGTH_INDEFINITE)
-                            .setAction( R.string.switch_message2, v ->aSwitch.setChecked(isChecked))
-                            .show();
-                } else {
-                    Snackbar.make(aSwitch, R.string.switch_message1, Snackbar.LENGTH_INDEFINITE)
-                            .setAction( R.string.switch_message2, v ->aSwitch.setChecked(!isChecked))
-                            .show();
-                }
-
-            }
-
+        Button login = findViewById(R.id.RegisterButton);
+        Intent goToProfile = new Intent (MainActivity.this, ProfileActivity.class);
+        login.setOnClickListener(cick->{
+            goToProfile.putExtra("email",emailEditText.getText().toString());
+            startActivity(goToProfile);
         });
+
+
+
+
+
+
+
     }
 }
