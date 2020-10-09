@@ -16,30 +16,38 @@ import com.google.android.material.snackbar.Snackbar;
 
 public class MainActivity extends AppCompatActivity {
        private SharedPreferences prefs;
+         EditText emailField;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_linear);
+        setContentView(R.layout.activity_main_profileactivity);
 
-        prefs = getSharedPreferences("account", Context.MODE_PRIVATE);
-        String emailAddress = prefs.getString("emailText","");
-        String password = prefs.getString("passwordText", "");
-        EditText emailEditText=findViewById(R.id.emailField);
-        emailEditText.setText(emailAddress);
-        EditText passwordEditText=findViewById(R.id.passwordField);
+        Button nextButton = (Button)findViewById(R.id.btnGotoChat);
+        emailField = (EditText)findViewById(R.id.typeEmalprofle);
+        prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
+        String saveEmail = prefs.getString("emailText","");
+        emailField.setText(saveEmail);
+        nextButton.setOnClickListener( b -> {
 
-        Button login = findViewById(R.id.RegisterButton);
-        Intent goToProfile = new Intent (MainActivity.this, ProfileActivity.class);
-        login.setOnClickListener(cick->{
-            goToProfile.putExtra("email",emailEditText.getText().toString());
-            startActivity(goToProfile);
+            //Give directions to go from this page, to SecondActivity
+            Intent nextPage = new Intent(MainActivity.this, ProfileActivity.class);
+
+            //   EditText et =(EditText)findViewById(R.id.)
+            nextPage.putExtra("emailType", emailField.getText().toString());
+            //Now make the transition:
+            startActivityForResult(nextPage, 345);
         });
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+        SharedPreferences.Editor editor = prefs.edit();
 
-
-
-
-
+        String typeEmail  = emailField.getText().toString();
+        editor.putString("ReserveName", typeEmail);
+        editor.commit();
     }
 }
