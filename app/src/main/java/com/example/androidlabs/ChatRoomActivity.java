@@ -1,5 +1,6 @@
 package com.example.androidlabs;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class ChatRoomActivity extends AppCompatActivity {
     List<MessageModel> messageModelList2 = new ArrayList<>();
     Button btnSend;
     Button btnReceive;
+    ChatAdapter adt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         editMessage = (EditText)findViewById(R.id.editMessage);
         btnSend = (Button)findViewById(R.id.btnSend);
         btnReceive = (Button)findViewById(R.id.btnReceive);
+
 
 
         btnSend.setOnClickListener(c -> {
@@ -57,7 +61,23 @@ public class ChatRoomActivity extends AppCompatActivity {
             lv.setAdapter(adt);
         });
 
-        Log.e("ChatRoomActivity","onCreate");
+        lv.setOnItemClickListener( (parent, view, pos, id) -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+            alertDialogBuilder.setTitle("Do you want to delete this?")
+                    //What is the message:
+                    .setMessage("The selected row to delete is: " + (pos + 1))
+                    //what the Yes button does:
+                    .setNegativeButton("No", (click, arg) -> {
+                    })
+                    .setPositiveButton("Yes", (click, arg) -> {
+                        messageModelList2.remove(pos);
+                        adt.notifyDataSetChanged();
+                    })
+                    .create().show();
+
+            Log.e("ChatRoomActivity","onCreate");
+        });
 
     }
 
@@ -136,7 +156,3 @@ class ChatAdapter extends BaseAdapter {
         return view;
     }
 }
-
-
-
-
