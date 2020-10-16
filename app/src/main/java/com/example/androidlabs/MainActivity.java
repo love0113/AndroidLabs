@@ -21,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_profileactivity);
+        setContentView(R.layout.activity_main_login);
 
-        Button nextButton = (Button)findViewById(R.id.btnGotoChat);
-        emailField = (EditText)findViewById(R.id.typeEmalprofle);
+        Button nextButton = (Button)findViewById(R.id.loginButton);
+        emailField = (EditText)findViewById(R.id.typeEmail);
         prefs = getSharedPreferences("FileName", Context.MODE_PRIVATE);
         String saveEmail = prefs.getString("emailText","");
         emailField.setText(saveEmail);
