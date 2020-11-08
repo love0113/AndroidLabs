@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
     ImageButton takePicture;
-    Button goToChat;
+    Button goToChat,goToWeatherBtn;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
 
@@ -28,7 +28,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_profileactivity);
         //get Intent from MainActivity
         Intent loginPage = getIntent();
-        goToChat = (Button)findViewById(R.id.btnGotoChat);
+
         String emailType = loginPage.getStringExtra("emailType");
         EditText enterEmail = (EditText)findViewById(R.id.typeEmalprofle);
         enterEmail.setText(emailType);
@@ -39,12 +39,21 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
+        goToChat = (Button)findViewById(R.id.btnGotoChat);
         goToChat.setOnClickListener( b -> {
 
             //Give directions to go from this page, to SecondActivity
             Intent nextPage = new Intent(ProfileActivity.this, ChatRoomActivity.class);
             //Now make the transition:
             startActivityForResult(nextPage, 345);
+        });
+
+        goToWeatherBtn = (Button)findViewById(R.id.GoToWeatherPage);
+        goToWeatherBtn.setOnClickListener(c -> {
+            Intent goToMenuPage = new Intent(ProfileActivity.this, WeatherForecast.class);
+
+            startActivityForResult(goToMenuPage, 234);
+
         });
         Log.e(ACTIVITY_NAME, "In function: onCreate"  /* replace with function name */);
     }

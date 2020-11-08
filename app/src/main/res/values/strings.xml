@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Lab5</string>
+    <string name="app_name">Lab5 and Lab6</string>
     <string name="emailAddress">Enter your email address</string>
     <string name="enterEmailAddress">Type email here</string>
     <string name="password">Type your password:</string>
@@ -12,6 +12,8 @@
     <string name="picture">Your picture:</string>
     <string name="textBotton">Click the button above to take a picture</string>
     <string name="btnGotoChat">GO TO CHAT</string>
+    <string name="GoToWeather">Go to Weather page</string>
+
     <string name="btnSend">SEND</string>
     <string name="btnReceive">RECEIVE</string>
     <string name="editText">Type here</string>
