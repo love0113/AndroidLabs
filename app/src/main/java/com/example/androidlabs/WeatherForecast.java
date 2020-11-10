@@ -39,7 +39,8 @@ public class WeatherForecast extends AppCompatActivity {
         setContentView(R.layout.activity_weather_forecast);
 
         ForecastQuery networkThread = new ForecastQuery();
-        networkThread.execute("http://api.openweathermap.org/data/2.5/weather?q=hanoi,vn&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric");
+        networkThread.execute("http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric" +
+                "\n");
 
         weather = (ImageView)findViewById(R.id.weather);
         currentTemp = (TextView)findViewById(R.id.currentTemp);
@@ -55,8 +56,9 @@ public class WeatherForecast extends AppCompatActivity {
     {
         String tempValue, min, max, uv, weatherIcon;
         Bitmap image;
-        private final String IMG_URL = "http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric\n" +
+        private final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?q=ottawa,ca&APPID=7e943c97096a9784391a981c4d878b22&mode=xml&units=metric" +
                 "\n";
+        private final String IMG_URL = "http://openweathermap.org/img/w/";
         @Override
         protected String doInBackground(String ... params) {
             try {
@@ -122,7 +124,7 @@ public class WeatherForecast extends AppCompatActivity {
                                 Log.e("AsyncTask", "Downloading image from the internet");
                                 //download image
 
-                                image  = HTTPUtils.getImage(IMG_URL+fileName);
+                                image  = HTTPUtils.getImage(IMG_URL +fileName);
                                 Log.e("AsyncTask", "Saving to local.....");
                                 FileOutputStream outputStream = null;
                                 try {
