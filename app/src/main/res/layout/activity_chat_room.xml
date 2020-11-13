@@ -6,13 +6,13 @@
 
     <ListView
         android:id="@+id/listView"
-        android:stackFromBottom="true"
-        android:transcriptMode="alwaysScroll"
-        android:dividerHeight="-8dp"
-        android:divider="@android:color/transparent"
         android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:layout_above="@id/btnSend"/>
+        android:layout_above="@id/btnSend"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="-8dp"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
 
     <Button
         android:id="@+id/btnSend"

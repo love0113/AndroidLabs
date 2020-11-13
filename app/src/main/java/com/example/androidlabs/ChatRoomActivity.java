@@ -1,185 +1,139 @@
 package com.example.androidlabs;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.androidlabs.DetailsFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
+
+import static android.app.Activity.RESULT_OK;
 
 
 public class ChatRoomActivity extends AppCompatActivity {
-    private ArrayList<Message> messagesList = new ArrayList<>();
-    private MyListAdapter myListAdapter;
-    SQLiteDatabase db;
 
-
+    ListView listView;
+    EditText editText;
+    List<com.example.androidlabs.MessageModel> listMessage = new ArrayList<>();
+    Button btnSend;
+    Button btnReceive;
+    DatabaseHelper db;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_room);
 
-        Button sendBtn = findViewById(R.id.btnSend);
-        Button receiveBtn = findViewById(R.id.btnReceive);
-        ListView myList = findViewById(R.id.listView);
-        EditText msgEditText = findViewById(R.id.editMessage);
+        listView = (ListView)findViewById(R.id.ListView);
+        editText = (EditText)findViewById(R.id.ChatEditText);
+        btnSend = (Button)findViewById(R.id.btnSend);
+        btnReceive = (Button)findViewById(R.id.btnReceive);
+        db = new DatabaseHelper(this);
+        boolean isTable = findViewById(R.id.fragmentLocation) != null;
 
-        loadDataFromDatabase();
-        myList.setAdapter(myListAdapter = new MyListAdapter());
+        viewData();
 
-        sendBtn.setOnClickListener(click -> {
-            String text = msgEditText.getText().toString();
-            if (text.length() > 0) {
-                ContentValues newRowValues = new ContentValues();
-
-                newRowValues.put(MyOpener.COL_MSG, text);
-                newRowValues.put(MyOpener.COL_SENT, 0);
-
-                long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
+        listView.setOnItemClickListener((list, item, position, id) -> {
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString("item", listMessage.get(position).message);
+            dataToPass.putInt("id", position);
+            dataToPass.putLong("db_id", listMessage.get(position).messageID);
 
 
-                Message message = new Message(newId, text, true);
-                messagesList.add(message);
-                myListAdapter.notifyDataSetChanged();
-                msgEditText.setText("");
+            if (isTable){
+                DetailsFragment dFragment = new DetailsFragment(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            }else {
+                Intent emptyActivity = new Intent(this, EmptyActivity.class);
+                emptyActivity.putExtras(dataToPass);
+                startActivityForResult(emptyActivity, 345);
             }
 
         });
+//
+//        sendBtn.setOnClickListener(c -> {
+//            String message = editText.getText().toString();
+//            if (!message.equals("")){
+////                MessageModel model = new MessageModel(message, true);
+////                listMessage.add(model);
+////
+////                ChatAdapter adt = new ChatAdapter(listMessage, getApplicationContext());
+////                listView.setAdapter(adt);
+//                db.insertData(message, true);
+//                editText.setText("");
+//                listMessage.clear();
+//                viewData();
+//            }
+//        });
 
-        receiveBtn.setOnClickListener(click -> {
-            String text = msgEditText.getText().toString();
-            if (text.length() > 0) {
-                ContentValues newRowValues = new ContentValues();
-
-                newRowValues.put(MyOpener.COL_MSG, text);
-                newRowValues.put(MyOpener.COL_SENT, 1);
-
-                long newId = db.insert(MyOpener.TABLE_NAME, null, newRowValues);
-
-
-                Message message = new Message(newId, text, false);
-                messagesList.add(message);
-                myListAdapter.notifyDataSetChanged();
-                msgEditText.setText("");
+        btnReceive.setOnClickListener(c -> {
+            String message = editText.getText().toString();
+            if (!message.equals("")) {
+//                MessageModel model = new MessageModel(message, false);
+//                listMessage.add(model);
+//                editText.setText("");
+//                ChatAdapter adt = new ChatAdapter(listMessage, getApplicationContext());
+//                listView.setAdapter(adt);
+                db.insertData(message, false);
+                editText.setText("");
+                listMessage.clear();
+                viewData();
             }
-
         });
+        Log.d("ChatRoomActivity","onCreate");
 
-        myList.setOnItemClickListener((parent, view, pos, id) -> {
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Do you want to delete this?")
-                    //  .setMessage("The selected row is: " + pos + ", The database id is: " + id)
-                    .setPositiveButton("yes", (click, arg) -> {
-                        deleteMsg(id);
-                        messagesList.remove(pos);
-                        myListAdapter.notifyDataSetChanged();
 
-                    })
-                    .setNegativeButton("No", (click, arg) -> {
-                    })
-                    .create().show();
-
-        });
-        String[] columns = {MyOpener.COL_ID, MyOpener.COL_MSG, MyOpener.COL_SENT};
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
-        printCursor(results, db.getVersion());
 
     }
 
-    protected void loadDataFromDatabase() {
-        MyOpener dbOpener = new MyOpener(this);
-        db = dbOpener.getWritableDatabase();
+    private void viewData(){
+        Cursor cursor = db.viewData();
 
-        String[] columns = {MyOpener.COL_ID, MyOpener.COL_MSG, MyOpener.COL_SENT};
-        Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
+        if (cursor.getCount() != 0){
+            while (cursor.moveToNext()){
+                MessageModel model = new MessageModel(cursor.getString(1), cursor.getInt(2)==0?true:false, cursor.getLong(0));
+                listMessage.add(model);
+                ChatAdapter adt = new ChatAdapter(listMessage, getApplicationContext());
+                listView.setAdapter(adt);
 
-        int msgColumnIndex = results.getColumnIndex(MyOpener.COL_MSG);
-        int isSendColumnIndex = results.getColumnIndex(MyOpener.COL_SENT);
-        int idColumnIndex = results.getColumnIndex(MyOpener.COL_ID);
-
-        while (results.moveToNext()) {
-            String msg = results.getString(msgColumnIndex);
-            long isSendLong = results.getLong(isSendColumnIndex);
-            boolean isSend;
-            if (isSendLong == 0) {
-                isSend = true;
-            } else {
-                isSend = false;
             }
-            long id = results.getLong(idColumnIndex);
-            messagesList.add(new Message(id, msg, isSend));
-        }
-
-
-    }
-
-    protected void deleteMsg(long id) {
-        db.delete(MyOpener.TABLE_NAME, MyOpener.COL_ID + "= ?", new String[]{Long.toString(id)});
-    }
-
-    protected void printCursor(Cursor c, int version) {
-        Log.e("Cursor_Info", "database version: " + version);
-        Log.e("Cursor_Info", "number of columns: " + c.getColumnCount());
-        Log.e("Cursor_Info", "name of columns: " + Arrays.toString(c.getColumnNames()));
-        Log.e("Cursor_Info", "name of rows: " + c.getCount());
-        if (c != null && c.moveToFirst()) {
-
-            do {
-                Log.e("Cursor_Info", "row: " + c.getPosition() + "{ id: " + c.getInt(c.getColumnIndex(MyOpener.COL_ID)) + " msg: " + c.getString(c.getColumnIndex(MyOpener.COL_MSG)) + " isSend: " + c.getInt(c.getColumnIndex(MyOpener.COL_SENT)) + " }");
-
-            } while (c.moveToNext());
-
         }
     }
 
-
-    private class MyListAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return messagesList.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return messagesList.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return (long) messagesList.get(position).getId();
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            Message message = (Message) getItem(position);
-            LayoutInflater inflater = getLayoutInflater();
-
-
-            View extraView = inflater.inflate(
-                    (message.isSent() ? R.layout.activity_main_receive : R.layout.activity_main_send)
-                    , parent, false);
-
-            TextView textView = extraView.findViewById(R.id.messageText);
-            textView.setText(message.getMessage());
-
-            return extraView;
+    //This function only gets called on the phone. The tablet never goes to a new activity
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 345)
+        {
+            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+            {
+                long id = data.getLongExtra("db_id", 0);
+                deleteMessageId((int)id);
+            }
         }
     }
 
+    public void deleteMessageId(int id)
+    {
+
+        db.deleteEntry(id);
+        listMessage.clear();
+        viewData();
+    }
 
 }
