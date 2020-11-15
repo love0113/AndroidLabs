@@ -46,7 +46,7 @@ public class ChatAdapter extends BaseAdapter {
             }else {
                 view = inflater.inflate(R.layout.activity_main_receive, null);
             }
-            TextView  messageText = (TextView)view.findViewById(R.id.textViewMessage);
+            TextView  messageText = (TextView)view.findViewById(R.id.messageText);
             messageText.setText(messageModels.get(position).message);
         }
         return view;

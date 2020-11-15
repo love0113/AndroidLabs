@@ -36,7 +36,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.ListView);
         editText = (EditText)findViewById(R.id.ChatEditText);
         btnSend = (Button)findViewById(R.id.btnSend);
-        btnReceive = (Button)findViewById(R.id.btnReceive);
+        btnReceive = (Button)findViewById(R.id.ReceiveBtn);
         db = new DatabaseHelper(this);
         boolean isTable = findViewById(R.id.fragmentLocation) != null;
 
@@ -55,7 +55,7 @@ public class ChatRoomActivity extends AppCompatActivity {
                 dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
                 getSupportFragmentManager()
                         .beginTransaction()
-                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                  //      .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
                         .addToBackStack("AnyName") //make the back button undo the transaction
                         .commit(); //actually load the fragment.
             }else {
@@ -118,12 +118,12 @@ public class ChatRoomActivity extends AppCompatActivity {
     //This function only gets called on the phone. The tablet never goes to a new activity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == 345)
-        {
-            if(resultCode == RESULT_OK) //if you hit the delete button instead of back button
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 345) {
+            if (resultCode == RESULT_OK) //if you hit the delete button instead of back button
             {
                 long id = data.getLongExtra("db_id", 0);
-                deleteMessageId((int)id);
+                deleteMessageId((int) id);
             }
         }
     }

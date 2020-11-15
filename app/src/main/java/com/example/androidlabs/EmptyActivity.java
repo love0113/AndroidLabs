@@ -19,7 +19,7 @@ public class EmptyActivity extends AppCompatActivity {
         dFragment.setTablet(false); //tell the Fragment that it's on a phone.
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragmentLocation, dFragment)
+              //  .add(R.id.fragmentLocation, dFragment)
                 .addToBackStack("AnyName")
                 .commit();
     }
