@@ -21,6 +21,7 @@
         android:id="@+id/fragmentLocation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorAccent"
         android:layout_toRightOf="@id/ListView"
         android:layout_alignParentRight="true"
         >

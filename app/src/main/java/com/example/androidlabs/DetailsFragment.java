@@ -53,7 +53,7 @@ public class DetailsFragment extends Fragment {
 
                 //now remove the fragment since you deleted it from the database:
                 // this is the object to be removed, so remove(this):
-             //   parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
+                parent.getSupportFragmentManager().beginTransaction().remove().commit();
             }
             //for Phone:
             else {
