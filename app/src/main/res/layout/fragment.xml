@@ -9,20 +9,39 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/message"/>
+        android:id="@+id/message"
+        android:text="Message Here"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/idText"
-        android:layout_below="@id/message"/>
+        android:layout_below="@id/message"
+        android:text="ID="/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/isSendMessage"
+        android:layout_below="@+id/idText"
+        android:text="is a Send Message"/>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_toLeftOf="@+id/isSendMessage"
+        android:src="@android:drawable/picture_frame"
+
+        />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Delete"
-        android:id="@+id/deleteButton"/>
+        android:text="HIDE"
+        android:id="@+id/hideButton"/>
 
     <TextView
         android:id="@+id/position"

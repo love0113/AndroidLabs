@@ -9,7 +9,7 @@
         android:id="@+id/ListView"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
-        android:dividerHeight="40dp"
+       android:dividerHeight="40dp"
         android:divider="@android:color/transparent"
         android:layout_width="300dp"
         android:layout_height="match_parent"
@@ -50,9 +50,11 @@
         android:id="@+id/ChatEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:ems="10"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_toLeftOf="@id/ReceiveBtn"
+        android:layout_toRightOf="@id/btnSend"
         android:hint="@string/editText"/>
 
 </RelativeLayout>
