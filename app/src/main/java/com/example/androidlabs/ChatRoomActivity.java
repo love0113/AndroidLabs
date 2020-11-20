@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -26,7 +27,9 @@ public class ChatRoomActivity extends AppCompatActivity {
     private ArrayList<Message> messagesList = new ArrayList<>();
     private MyListAdapter myListAdapter;
     SQLiteDatabase db;
-
+    public static final String ITEM_SELECTED="ITEM";
+    public static final String ITEM_POSITION="POSITION";
+    public static final String ITEM_ID="ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +43,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         loadDataFromDatabase();
         myList.setAdapter(myListAdapter = new MyListAdapter());
+        boolean isTable = findViewById(R.id.fragmentLocation) != null;
 
         sendBtn.setOnClickListener(click -> {
             String text = msgEditText.getText().toString();
@@ -79,7 +83,29 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         });
 
-        myList.setOnItemClickListener((parent, view, pos, id) -> {
+        myList.setOnItemClickListener((list, item, position, id) -> {
+            Bundle dataToPass = new Bundle();
+            dataToPass.putString("item", myListAdapter.get(position).message);
+            dataToPass.putInt("id", position);
+            dataToPass.putLong("db_id", myListAdapter.get(position).messageID);
+            if (isTable){
+                DetailsFragment dFragment = new DetailsFragment(); //add a DetailFragment
+                dFragment.setArguments( dataToPass ); //pass it a bundle for information
+                dFragment.setTablet(true);  //tell the fragment if it's running on a tablet or not
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.fragmentLocation, dFragment) //Add the fragment in FrameLayout
+                        .addToBackStack("AnyName") //make the back button undo the transaction
+                        .commit(); //actually load the fragment.
+            }else {
+                Intent emptyActivity = new Intent(this, EmptyActivity.class);
+                emptyActivity.putExtras(dataToPass);
+                startActivityForResult(emptyActivity, 345);
+            }
+
+        });
+
+            myList.setOnItemClickListener((parent, view, pos, id) -> {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
                     //  .setMessage("The selected row is: " + pos + ", The database id is: " + id)
