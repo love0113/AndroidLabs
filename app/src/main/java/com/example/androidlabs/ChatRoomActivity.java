@@ -45,7 +45,7 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         loadDataFromDatabase();
         myList.setAdapter(myListAdapter = new MyListAdapter());
-        boolean isTable = findViewById(R.id.fragmentLocation) != null;
+        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
 
         sendBtn.setOnClickListener(click -> {
             String text = msgEditText.getText().toString();
@@ -142,7 +142,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
         int msgColumnIndex =results.getColumnIndex(MyOpener.COL_MSG);
-        int isSendColumnIndex=results.getColumnIndex(MyOpener.COL_IS_SEND);
+        int isSendColumnIndex=results.getColumnIndex(MyOpener.COL_SENT);
         int idColumnIndex =results.getColumnIndex(MyOpener.COL_ID);
 
         while(results.moveToNext()){
@@ -173,7 +173,7 @@ public class ChatRoomActivity extends AppCompatActivity {
         if (c != null && c.moveToFirst()) {
 
             do {
-                Log.e("Cursor_Info", "row: " + c.getPosition() + "{ id: " + c.getInt(c.getColumnIndex(MyOpener.COL_ID)) + " msg: " + c.getString(c.getColumnIndex(MyOpener.COL_MSG)) + " isSend: " + c.getInt(c.getColumnIndex(MyOpener.COL_IS_SEND)) + " }");
+                Log.e("Cursor_Info", "row: " + c.getPosition() + "{ id: " + c.getInt(c.getColumnIndex(MyOpener.COL_ID)) + " msg: " + c.getString(c.getColumnIndex(MyOpener.COL_MSG)) + " isSend: " + c.getInt(c.getColumnIndex(MyOpener.COL_SENT)) + " }");
 
             } while (c.moveToNext());
 

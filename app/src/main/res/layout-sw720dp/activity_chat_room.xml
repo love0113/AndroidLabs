@@ -10,7 +10,7 @@
 
 
     <Button
-        android:id="@+id/chat_send_btn"
+        android:id="@+id/btnSend"
         android:text="@string/btnSend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,9 +24,9 @@
         android:hint="@string/editText"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/chat_send_btn" />
+        android:layout_toRightOf="@+id/btnSend" />
     <Button
-        android:id="@+id/chat_receive_btn"
+        android:id="@+id/btnReceive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
