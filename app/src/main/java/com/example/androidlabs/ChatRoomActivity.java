@@ -40,8 +40,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         Button sendBtn = findViewById(R.id.btnSend);
         Button receiveBtn = findViewById(R.id.btnReceive);
-        ListView myList = findViewById(R.id.listView);
-        EditText msgEditText = findViewById(R.id.editMessage);
+        ListView myList = findViewById(R.id.ListView);
+        EditText msgEditText = findViewById(R.id.chat_editText);
 
         loadDataFromDatabase();
         myList.setAdapter(myListAdapter = new MyListAdapter());

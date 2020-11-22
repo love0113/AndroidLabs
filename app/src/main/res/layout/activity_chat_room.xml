@@ -5,12 +5,12 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@+id/ListView"
         android:stackFromBottom="true"
         android:transcriptMode="alwaysScroll"
         android:dividerHeight="-8dp"
         android:divider="@android:color/transparent"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/btnSend"/>
 
@@ -23,7 +23,7 @@
         android:text="@string/btnSend" />
 
     <EditText
-        android:id="@+id/editMessage"
+        android:id="@+id/chat_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
