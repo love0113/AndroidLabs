@@ -1,74 +1,109 @@
 package com.example.androidlabs;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
+import android.content.Context;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
-
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link DetailsFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
 public class DetailsFragment extends Fragment {
+    private AppCompatActivity parentActivity;
 
-    private boolean isTablet;
-    private Bundle dataFromActivity;
-    private long db_id;
-    private int id;
+    private long id;
+    private Bundle arguments;
 
-    public void setTablet(boolean tablet) { isTablet = tablet; }
 
+    // TODO: Rename parameter arguments, choose names that match
+    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    // TODO: Rename and change types of parameters
+    private String mParam1;
+    private String mParam2;
+
+    public DetailsFragment() {
+        // Required empty public constructor
+    }
+
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment DetailsFragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    public static DetailsFragment newInstance(String param1, String param2) {
+        DetailsFragment fragment = new DetailsFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        //context will either be FragmentExample for a tablet, or EmptyActivity for phone
+        parentActivity = (AppCompatActivity)context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        dataFromActivity = getArguments();
-        db_id = dataFromActivity.getLong("db_id" );
-        id = dataFromActivity.getInt("id" );
         // Inflate the layout for this fragment
-        View result =  inflater.inflate(R.layout.fragment, container, false);
+        View result = inflater.inflate(R.layout.fragment_details, container, false);
+        arguments = getArguments();
+        id = arguments.getLong(ChatRoomActivity.ITEM_ID);
 
-        //show the message
-        TextView message = (TextView)result.findViewById(R.id.message);
-        message.setText("message: "+dataFromActivity.getString("ITEM"));
+        TextView msgTextView = result.findViewById(R.id.msg_text_view);
+        msgTextView.setText(arguments.getString(ChatRoomActivity.ITEM_SELECTED));
 
-        //show the id:
-        TextView idView = (TextView)result.findViewById(R.id.idText);
-        idView.setText("Listview ID=" + id);
+        TextView idTextView = result.findViewById(R.id.id_text_view);
+        idTextView.setText("ID= " + id);
 
-        TextView position = (TextView)result.findViewById(R.id.position);
-        position.setText("DB id = "+db_id);
+        CheckBox checkBox = result.findViewById(R.id.check_box);
+        if (arguments.getString(ChatRoomActivity.ITEM_IS_SEND).equals("true")) {
+            checkBox.setChecked(!checkBox.isChecked());
+        } else {
+            checkBox.setChecked(checkBox.isChecked());
+        }
 
-        // get the delete button, and add a click listener:
-        Button hideButton = (Button)result.findViewById(R.id.hideButton);
-        hideButton.setOnClickListener( clk -> {
+        Button finishButton = (Button) result.findViewById(R.id.hide_btn);
+        finishButton.setOnClickListener(clk -> {
 
-
-            if(isTablet) { //both the list and details are on the screen:
-                ChatRoomActivity parent = (ChatRoomActivity)getActivity();
-                parent. deleteMsg((int)db_id); //this deletes the item and updates the list
-
-
-                //now remove the fragment since you deleted it from the database:
-                // this is the object to be removed, so remove(this):
-                parent.getSupportFragmentManager().beginTransaction().remove(this).commit();
+            //Tell the parent activity to remove
+            parentActivity.getSupportFragmentManager().beginTransaction().remove(this).commit();
+            if (parentActivity.getSupportFragmentManager().findFragmentById(R.id.fragmentLocation) == null) {
+                parentActivity.finish();
             }
-            //for Phone:
-            else {
-                EmptyActivity parent = (EmptyActivity) getActivity();
-                Intent backToFragmentExample = new Intent();
-                backToFragmentExample.putExtra("db_id", dataFromActivity.getLong("db_id"));
-
-                parent.setResult(Activity.RESULT_OK, backToFragmentExample); //send data back to FragmentExample in onActivityResult()
-                parent.finish(); //go back
-            }
-
         });
         return result;
     }
+
 }
