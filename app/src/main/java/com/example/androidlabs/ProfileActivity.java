@@ -39,13 +39,21 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
-        goToChat.setOnClickListener( b -> {
+   /*     goToChat.setOnClickListener( b -> {
 
             //Give directions to go from this page, to SecondActivity
-            Intent nextPage = new Intent(ProfileActivity.this, ChatRoomActivity.class);
+            Intent nextPage = new Intent(TestToolbar.this, ChatRoomActivity.class);
             //Now make the transition:
             startActivityForResult(nextPage, 345);
-        });
+        }); */
+
+          /*   goToWeatherBtn = (Button)findViewById(R.id.GoToWeatherPage);
+        goToWeatherBtn.setOnClickListener(c -> {
+            Intent goToMenuPage = new Intent(TestToolbar.this, WeatherForecast.class);
+
+            startActivityForResult(goToMenuPage, 234);
+
+        });  */
 
         goToToolbarBtn = (Button)findViewById(R.id.GoToToolbarPage);
         goToToolbarBtn.setOnClickListener(c -> {
@@ -55,13 +63,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
 
-        goToWeatherBtn = (Button)findViewById(R.id.GoToWeatherPage);
-        goToWeatherBtn.setOnClickListener(c -> {
-            Intent goToMenuPage = new Intent(ProfileActivity.this, WeatherForecast.class);
 
-            startActivityForResult(goToMenuPage, 234);
-
-        });
 
 
 

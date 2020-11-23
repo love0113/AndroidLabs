@@ -73,6 +73,21 @@ public class TestToolbar extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         return true;
     }
+     /*     goToChat.setOnClickListener( b -> {
+
+            //Give directions to go from this page, to SecondActivity
+            Intent nextPage = new Intent(TestToolbar.this, ChatRoomActivity.class);
+            //Now make the transition:
+            startActivityForResult(nextPage, 345);
+        }); */
+
+          /*   goToWeatherBtn = (Button)findViewById(R.id.GoToWeatherPage);
+        goToWeatherBtn.setOnClickListener(c -> {
+            Intent goToMenuPage = new Intent(TestToolbar.this, WeatherForecast.class);
+
+            startActivityForResult(goToMenuPage, 234);
+
+        });  */
 
     public boolean onNavigationItemSelected(MenuItem item){
 
