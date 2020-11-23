@@ -56,7 +56,7 @@ public class TestToolbar extends AppCompatActivity {
                 //Show the toast immediately:
                 Toast.makeText(this, overflowToast, Toast.LENGTH_LONG).show();
                 break;
-            case R.id.MenuItems_delete:
+            case R.id.MenuItems_clear:
                 //Show the toast immediately:
                 Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
                 break;
