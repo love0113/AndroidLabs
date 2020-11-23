@@ -69,30 +69,13 @@ public class TestToolbar extends AppCompatActivity {
             case R.id.MenuItems_share:
                 message ="You clicked on item 3";
                 break;
-
         }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         return true;
     }
 
-    public void alertExample()
-    {
-        View middle = getLayoutInflater().inflate(R.layout.dialog, null);
-        EditText et = (EditText)middle.findViewById(R.id.view_edit_text);
+    public boolean onNavigationItemSelected(MenuItem item){
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("The Message")
-                .setPositiveButton("Positive", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        overflowToast = et.getText().toString();
-                    }
-                })
-                .setNegativeButton("Negative", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // What to do on Cancel
-                    }
-                }).setView(middle);
-
-        builder.create().show();
     }
 
 }
