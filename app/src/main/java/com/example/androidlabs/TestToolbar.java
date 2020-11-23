@@ -1,5 +1,6 @@
 package com.example.androidlabs;
 
+
 import android.content.DialogInterface;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import androidx.appcompat.design.widget.Snackbar;
+
+
 
 
 import android.os.Bundle;
@@ -25,7 +27,7 @@ public class TestToolbar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_toolbar);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
 
@@ -49,25 +51,23 @@ public class TestToolbar extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String message = null;
         switch(item.getItemId())
         {
             //what to do when the menu item is selected:
             case R.id.MenuItems_overflow:
                 //Show the toast immediately:
-                Toast.makeText(this, overflowToast, Toast.LENGTH_LONG).show();
+                message ="You clicked on the overflow menu";
                 break;
             case R.id.MenuItems_clear:
                 //Show the toast immediately:
-                Toast.makeText(this, "This is the initial message", Toast.LENGTH_LONG).show();
+                message ="You clicked on item 1";
                 break;
             case R.id.MenuItems_edit:
-                alertExample();
+                message ="You clicked on item 2";
                 break;
             case R.id.MenuItems_share:
-                //Snackbar code:
-                Snackbar sb = Snackbar.make(toolbar, "This is the Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Go Back?", e -> finish());
-                sb.show();
+                message ="You clicked on item 3";
                 break;
 
         }
