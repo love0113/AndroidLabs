@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
     ImageButton takePicture;
-    Button goToChat;
+    Button goToChat, goToToolbarBtn, goToWeatherBtn;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
 
@@ -46,6 +46,25 @@ public class ProfileActivity extends AppCompatActivity {
             //Now make the transition:
             startActivityForResult(nextPage, 345);
         });
+
+        goToToolbarBtn = (Button)findViewById(R.id.GoToToolbarPage);
+        goToToolbarBtn.setOnClickListener(c -> {
+            Intent goToMenuPage = new Intent(ProfileActivity.this, TestToolbar.class);
+
+            startActivityForResult(goToMenuPage, 123);
+
+        });
+
+        goToWeatherBtn = (Button)findViewById(R.id.GoToWeatherPage);
+        goToWeatherBtn.setOnClickListener(c -> {
+            Intent goToMenuPage = new Intent(ProfileActivity.this, WeatherForecast.class);
+
+            startActivityForResult(goToMenuPage, 234);
+
+        });
+
+
+
         Log.e(ACTIVITY_NAME, "In function: onCreate"  /* replace with function name */);
     }
     @Override
