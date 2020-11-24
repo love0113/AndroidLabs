@@ -63,10 +63,6 @@ public class ProfileActivity extends AppCompatActivity {
 
         });
 
-
-
-
-
         Log.e(ACTIVITY_NAME, "In function: onCreate"  /* replace with function name */);
     }
     @Override

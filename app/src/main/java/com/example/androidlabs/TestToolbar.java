@@ -1,24 +1,18 @@
 package com.example.androidlabs;
 
 
-import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
-import android.util.Log;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
-
-
-
-
-import android.os.Bundle;
 
 public class TestToolbar extends AppCompatActivity {
 
@@ -31,9 +25,13 @@ public class TestToolbar extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
 
+   /*     //For NavigationDrawer:
+        DrawerLayout drawer = findviewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer ,tBar,"Open","Close"); */
+
 
         //add back navigation button
-        if (getSupportActionBar() !=null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
@@ -44,7 +42,7 @@ public class TestToolbar extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
+        inflater.inflate(R.menu.toolbar_menu, menu);
 
         return true;
     }
@@ -52,27 +50,49 @@ public class TestToolbar extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         String message = null;
-        switch(item.getItemId())
-        {
+        switch (item.getItemId()) {
             //what to do when the menu item is selected:
             case R.id.MenuItems_overflow:
                 //Show the toast immediately:
-                message ="You clicked on the overflow menu";
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                message = "You clicked on the overflow menu";
                 break;
             case R.id.MenuItems_clear:
                 //Show the toast immediately:
-                message ="You clicked on item 1";
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                message = "You clicked on item 1";
                 break;
             case R.id.MenuItems_edit:
-                message ="You clicked on item 2";
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                message = "You clicked on item 2";
                 break;
             case R.id.MenuItems_share:
-                message ="You clicked on item 3";
+                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+                message = "You clicked on item 3";
+                break;
+            case R.id.ChatPage:
+                Toast.makeText(this, "Chat started", Toast.LENGTH_SHORT).show();
+                //Give directions to go from this page, to SecondActivity
+                Intent nextPage = new Intent(TestToolbar.this, ChatRoomActivity.class);
+                //Now make the transition:
+                startActivityForResult(nextPage, 345);
+                break;
+            case R.id.GoToWeatherPage:
+                Toast.makeText(this, "Weather app started", Toast.LENGTH_SHORT).show();
+                Intent goToMenuPage = new Intent(TestToolbar.this, WeatherForecast.class);
+
+                startActivityForResult(goToMenuPage, 234);
+                break;
+            case R.id.GoBackToLogin:
+                Toast.makeText(this, "Go back to Login", Toast.LENGTH_SHORT).show();
+                Intent goBackToLogin = new Intent(TestToolbar.this, ProfileActivity.class);
+                startActivityForResult(goBackToLogin,500);
                 break;
         }
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
         return true;
     }
+
      /*     goToChat.setOnClickListener( b -> {
 
             //Give directions to go from this page, to SecondActivity
@@ -89,8 +109,8 @@ public class TestToolbar extends AppCompatActivity {
 
         });  */
 
-    public boolean onNavigationItemSelected(MenuItem item){
+  /*  public boolean onNavigationItemSelected(MenuItem item) {
 
-    }
-
+    }*/
 }
+

@@ -12,7 +12,7 @@
     <string name="picture">Your picture:</string>
     <string name="textBotton">Click the button above to take a picture</string>
     <string name="btnGotoChat">GO TO CHAT</string>
-    <string name="GoToWeather">Go to Weather page</string>
+
 
     <string name="btnSend">SEND</string>
     <string name="btnReceive">RECEIVE</string>
