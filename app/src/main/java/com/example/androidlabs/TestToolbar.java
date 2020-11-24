@@ -14,6 +14,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 public class TestToolbar extends AppCompatActivity {
 
     @Override
@@ -21,20 +23,29 @@ public class TestToolbar extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_toolbar);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
+        Toolbar tBar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(tBar);
+    //    getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
 
         //For NavigationDrawer:
-        DrawerLayout drawer = findviewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer ,toolbar,"Open","Close");
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,tBar,
+                "Open","Close");
+
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView =findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
-        //add back navigation button
+
+
+      /*  //add back navigation button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-        }
+        }*/
 
     }
 
