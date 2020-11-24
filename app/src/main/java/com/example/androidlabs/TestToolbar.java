@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
+import org.jetbrains.annotations.NotNull;
+
 public class TestToolbar extends AppCompatActivity {
 
     @Override
@@ -29,8 +31,7 @@ public class TestToolbar extends AppCompatActivity {
 
         //For NavigationDrawer:
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,tBar,
-                "Open","Close");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,tBar, R.string.open,R.string.close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
@@ -65,63 +66,43 @@ public class TestToolbar extends AppCompatActivity {
             //what to do when the menu item is selected:
             case R.id.MenuItems_overflow:
                 //Show the toast immediately:
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
                 message = "You clicked on the overflow menu";
                 break;
             case R.id.MenuItems_clear:
                 //Show the toast immediately:
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
                 message = "You clicked on item 1";
                 break;
             case R.id.MenuItems_edit:
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
                 message = "You clicked on item 2";
                 break;
             case R.id.MenuItems_share:
-                Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+
                 message = "You clicked on item 3";
                 break;
-            case R.id.ChatPage:
-                Toast.makeText(this, "Chat started", Toast.LENGTH_SHORT).show();
-                //Give directions to go from this page, to SecondActivity
-                Intent nextPage = new Intent(TestToolbar.this, ChatRoomActivity.class);
-                //Now make the transition:
-                startActivityForResult(nextPage, 345);
-                break;
-            case R.id.GoToWeatherPage:
-                Toast.makeText(this, "Weather app started", Toast.LENGTH_SHORT).show();
-                Intent goToMenuPage = new Intent(TestToolbar.this, WeatherForecast.class);
-
-                startActivityForResult(goToMenuPage, 234);
-                break;
-            case R.id.GoBackToLogin:
-                Toast.makeText(this, "Go back to Login", Toast.LENGTH_SHORT).show();
-                Intent goBackToLogin = new Intent(TestToolbar.this, ProfileActivity.class);
-                startActivityForResult(goBackToLogin,500);
-                break;
         }
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
         return true;
     }
 
-     /*     goToChat.setOnClickListener( b -> {
 
-            //Give directions to go from this page, to SecondActivity
-            Intent nextPage = new Intent(TestToolbar.this, ChatRoomActivity.class);
-            //Now make the transition:
-            startActivityForResult(nextPage, 345);
-        }); */
-
-          /*   goToWeatherBtn = (Button)findViewById(R.id.GoToWeatherPage);
-        goToWeatherBtn.setOnClickListener(c -> {
-            Intent goToMenuPage = new Intent(TestToolbar.this, WeatherForecast.class);
-
-            startActivityForResult(goToMenuPage, 234);
-
-        });  */
-
-  /*  public boolean onNavigationItemSelected(MenuItem item) {
-
-    }*/
+    public boolean onNavigationItemSelected(@NotNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.ChatPage:
+                startActivity(new Intent(this,ChatRoomActivity.class));
+                return true;
+            case R.id.GoToWeatherPage:
+                startActivity(new Intent(this,WeatherForecast.class));
+                return true;
+            case R.id.GoBackToLogin:
+                setResult(500);
+                finish();
+                return true;
+        }
+               return false;
+    }
 }
 
