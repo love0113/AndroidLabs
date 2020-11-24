@@ -31,7 +31,8 @@ public class TestToolbar extends AppCompatActivity {
 
         //For NavigationDrawer:
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,tBar, R.string.open,R.string.close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,tBar,
+                "open","close");
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
