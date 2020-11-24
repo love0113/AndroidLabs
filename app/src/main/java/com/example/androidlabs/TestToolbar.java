@@ -25,9 +25,9 @@ public class TestToolbar extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
 
-   /*     //For NavigationDrawer:
+        //For NavigationDrawer:
         DrawerLayout drawer = findviewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer ,tBar,"Open","Close"); */
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer ,toolbar,"Open","Close");
 
 
         //add back navigation button
