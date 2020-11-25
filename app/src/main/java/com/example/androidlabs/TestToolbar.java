@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.view.Menu;
@@ -18,7 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TestToolbar extends AppCompatActivity {
+public class TestToolbar extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +28,16 @@ public class TestToolbar extends AppCompatActivity {
 
         Toolbar tBar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(tBar);
-    //    getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
+        //    getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
 
         //For NavigationDrawer:
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer,tBar,
-                "open","close");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, tBar, R.string.open, R.string.close);
 
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView =findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
 
@@ -89,21 +89,21 @@ public class TestToolbar extends AppCompatActivity {
         return true;
     }
 
-
-    public boolean onNavigationItemSelected(@NotNull MenuItem item) {
-        switch (item.getItemId()){
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
             case R.id.ChatPage:
-                startActivity(new Intent(this,ChatRoomActivity.class));
+                startActivity(new Intent(this, ChatRoomActivity.class));
                 return true;
             case R.id.GoToWeatherPage:
-                startActivity(new Intent(this,WeatherForecast.class));
+                startActivity(new Intent(this, WeatherForecast.class));
                 return true;
             case R.id.GoBackToLogin:
                 setResult(500);
                 finish();
                 return true;
         }
-               return false;
+        return false;
     }
 }
 
