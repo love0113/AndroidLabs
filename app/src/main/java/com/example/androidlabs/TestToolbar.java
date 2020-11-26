@@ -70,16 +70,16 @@ public class TestToolbar extends AppCompatActivity  implements NavigationView.On
 
                 message = "You clicked on the overflow menu";
                 break;
-            case R.id.MenuItems_clear:
+            case R.id.MenuItems_freeicon:
                 //Show the toast immediately:
 
                 message = "You clicked on item 1";
                 break;
-            case R.id.MenuItems_edit:
+            case R.id.MenuItems_global:
 
                 message = "You clicked on item 2";
                 break;
-            case R.id.MenuItems_share:
+            case R.id.MenuItems_about:
 
                 message = "You clicked on item 3";
                 break;
