@@ -21,6 +21,9 @@ import org.jetbrains.annotations.NotNull;
 
 public class TestToolbar extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,15 +43,11 @@ public class TestToolbar extends AppCompatActivity  implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
-
       /*  //add back navigation button
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }*/
-
     }
 
     @Override

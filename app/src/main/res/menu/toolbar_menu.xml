@@ -6,50 +6,31 @@
         android:icon="@drawable/freeicon"
         android:orderInCategory="1"
         app:showAsAction="always"
-        android:title="delete"/>
+        android:title="setting"/>
 
     <item android:id="@+id/MenuItems_global"
         android:icon="@drawable/global"
         android:orderInCategory="2"
         app:showAsAction="always"
-        android:title="edit"/>
+        android:title="global"/>
 
     <item android:id="@+id/MenuItems_mail"
         android:icon="@drawable/mail"
         android:orderInCategory="3"
         app:showAsAction="always"
-        android:title="share"/>
+        android:title="mail"/>
 
     <item android:id="@+id/MenuItems_about"
-        android:icon="@drawable/about"
+        android:icon="@drawable/edit"
         android:orderInCategory="4"
         app:showAsAction="always"
-        android:title="about"/>
+        android:title="edit"/>
 
 
     <item android:id="@+id/MenuItems_overflow"
         android:title="overflow"
         android:orderInCategory="5"
         app:showAsAction="always"/>
-
-
-    <item
-        android:id="@+id/ChatPage"
-        android:orderInCategory="5"
-        android:title="Chat Page"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/GoToWeatherPage"
-        android:orderInCategory="6"
-        android:title="Weather Forecast"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/GoBackToLogin"
-        android:orderInCategory="7"
-        android:title="Go back to login"
-        app:showAsAction="never" />
-
 
 
 
