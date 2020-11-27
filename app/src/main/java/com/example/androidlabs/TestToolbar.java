@@ -21,8 +21,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class TestToolbar extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
-
-
+       DrawerLayout drawerLayout;
+       ActionBarDrawerToggle drawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +34,15 @@ public class TestToolbar extends AppCompatActivity  implements NavigationView.On
         //    getSupportActionBar().setDisplayShowTitleEnabled(false);//disappear the title
 
         //For NavigationDrawer:
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, tBar, R.string.open, R.string.close);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        drawerToggle=new ActionBarDrawerToggle(this, drawerLayout,tBar,R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.setDrawerIndicatorEnabled(true);
+        drawerToggle.syncState();
+     //   ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, tBar, R.string.open, R.string.close);
 
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+     //   drawerLayout.addDrawerListener(toggle);
+     //   toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -64,11 +68,7 @@ public class TestToolbar extends AppCompatActivity  implements NavigationView.On
         String message = null;
         switch (item.getItemId()) {
             //what to do when the menu item is selected:
-            case R.id.MenuItems_overflow:
-                //Show the toast immediately:
 
-                message = "You clicked on the overflow menu";
-                break;
             case R.id.MenuItems_freeicon:
                 //Show the toast immediately:
 

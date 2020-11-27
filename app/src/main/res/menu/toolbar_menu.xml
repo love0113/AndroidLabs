@@ -27,11 +27,4 @@
         android:title="edit"/>
 
 
-    <item android:id="@+id/MenuItems_overflow"
-        android:title="overflow"
-        android:orderInCategory="5"
-        app:showAsAction="always"/>
-
-
-
 </menu>
