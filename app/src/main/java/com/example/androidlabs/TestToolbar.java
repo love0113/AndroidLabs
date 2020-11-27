@@ -78,7 +78,7 @@ public class TestToolbar extends AppCompatActivity  implements NavigationView.On
 
                 message = "You clicked on item 2";
                 break;
-            case R.id.MenuItems_about:
+            case R.id.MenuItems_mail:
 
                 message = "You clicked on item 3";
                 break;
