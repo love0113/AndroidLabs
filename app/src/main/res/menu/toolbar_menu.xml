@@ -20,10 +20,10 @@
         app:showAsAction="always"
         android:title="mail"/>
 
-    <item android:id="@+id/MenuItems_about"
+    <item android:id="@+id/MenuItems_edit"
         android:icon="@drawable/edit"
         android:orderInCategory="4"
-        app:showAsAction="always"
+        app:showAsAction="never"
         android:title="edit"/>
 
 

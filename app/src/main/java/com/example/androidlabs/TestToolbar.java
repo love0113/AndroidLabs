@@ -82,6 +82,10 @@ public class TestToolbar extends AppCompatActivity  implements NavigationView.On
 
                 message = "You clicked on item 3";
                 break;
+            case R.id.MenuItems_edit:
+
+                message = "You clicked on the overflow menu";
+                break;
         }
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 

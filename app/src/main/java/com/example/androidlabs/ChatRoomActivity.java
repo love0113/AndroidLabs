@@ -4,7 +4,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentValues;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -28,10 +27,6 @@ public class ChatRoomActivity extends AppCompatActivity {
     private MyListAdapter myListAdapter;
     SQLiteDatabase db;
 
-    public static final String ITEM_SELECTED = "ITEM";
-    public static final String ITEM_POSITION = "POSITION";
-    public static final String ITEM_ID = "ID";
-    public static final String ITEM_IS_SEND = "IS_SEND";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +40,6 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         loadDataFromDatabase();
         myList.setAdapter(myListAdapter = new MyListAdapter());
-        boolean isTablet = findViewById(R.id.fragmentLocation) != null;
 
         sendBtn.setOnClickListener(click -> {
             String text = msgEditText.getText().toString();
@@ -85,48 +79,20 @@ public class ChatRoomActivity extends AppCompatActivity {
 
         });
 
-        myList.setOnItemClickListener((parent, item, pos, id) -> {
-            Bundle dataToPass = new Bundle();
-            dataToPass.putString(ITEM_SELECTED, messagesList.get(pos).getMessage());
-            dataToPass.putInt(ITEM_POSITION, pos);
-            dataToPass.putLong(ITEM_ID, id);
-            if (messagesList.get(pos).isSent() == true) {
-                dataToPass.putString(ITEM_IS_SEND, "true");
-            } else {
-                dataToPass.putString(ITEM_IS_SEND, "false");
-            }
-
-            if (isTablet) {
-                DetailsFragment dFragment = new DetailsFragment();
-                dFragment.setArguments(dataToPass);
-                getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.fragmentLocation, dFragment)
-                        .commit();
-            } else {
-                Intent msgDetailActivity = new Intent(this, EmptyActivity.class);
-                msgDetailActivity.putExtras(dataToPass);
-                startActivity(msgDetailActivity);
-            }
-
-
-
-        });
-
-        myList.setOnItemLongClickListener((parent, view, pos, id) -> {
+        myList.setOnItemClickListener((parent, view, pos, id) -> {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Do you want to delete this?")
-                    .setMessage("The selected row is: " + pos + ", The database id is: " + id)
-                    .setPositiveButton("yes",(click,arg)->{
+                    //  .setMessage("The selected row is: " + pos + ", The database id is: " + id)
+                    .setPositiveButton("yes", (click, arg) -> {
                         deleteMsg(id);
                         messagesList.remove(pos);
                         myListAdapter.notifyDataSetChanged();
 
                     })
                     .setNegativeButton("No", (click, arg) -> {
-                    });
+                    })
+                    .create().show();
 
-            return true;
         });
         String[] columns = {MyOpener.COL_ID, MyOpener.COL_MSG, MyOpener.COL_SENT};
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
@@ -135,27 +101,27 @@ public class ChatRoomActivity extends AppCompatActivity {
     }
 
     protected void loadDataFromDatabase() {
-        MyOpener dbOpener =new MyOpener(this);
-        db=dbOpener.getWritableDatabase();
+        MyOpener dbOpener = new MyOpener(this);
+        db = dbOpener.getWritableDatabase();
 
         String[] columns = {MyOpener.COL_ID, MyOpener.COL_MSG, MyOpener.COL_SENT};
         Cursor results = db.query(false, MyOpener.TABLE_NAME, columns, null, null, null, null, null, null);
 
-        int msgColumnIndex =results.getColumnIndex(MyOpener.COL_MSG);
-        int isSendColumnIndex=results.getColumnIndex(MyOpener.COL_SENT);
-        int idColumnIndex =results.getColumnIndex(MyOpener.COL_ID);
+        int msgColumnIndex = results.getColumnIndex(MyOpener.COL_MSG);
+        int isSendColumnIndex = results.getColumnIndex(MyOpener.COL_SENT);
+        int idColumnIndex = results.getColumnIndex(MyOpener.COL_ID);
 
-        while(results.moveToNext()){
-            String msg =results.getString(msgColumnIndex);
-            long isSendLong=results.getLong(isSendColumnIndex);
+        while (results.moveToNext()) {
+            String msg = results.getString(msgColumnIndex);
+            long isSendLong = results.getLong(isSendColumnIndex);
             boolean isSend;
-            if(isSendLong ==0){
+            if (isSendLong == 0) {
                 isSend = true;
-            }else{
-                isSend=false;
+            } else {
+                isSend = false;
             }
-            long id=results.getLong(idColumnIndex);
-            messagesList.add(new Message(id,msg,isSend));
+            long id = results.getLong(idColumnIndex);
+            messagesList.add(new Message(id, msg, isSend));
         }
 
 
@@ -205,8 +171,8 @@ public class ChatRoomActivity extends AppCompatActivity {
 
 
             View extraView = inflater.inflate(
-                    (message.isSent() ? R.layout.activity_main_receive:R.layout.activity_main_send  )
-                    ,parent,false);
+                    (message.isSent() ? R.layout.activity_main_receive : R.layout.activity_main_send)
+                    , parent, false);
 
             TextView textView = extraView.findViewById(R.id.messageText);
             textView.setText(message.getMessage());
