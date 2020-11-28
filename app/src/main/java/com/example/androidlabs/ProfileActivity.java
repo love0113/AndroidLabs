@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
     ImageButton takePicture;
-    Button goToChat, goToWeatherBtn;
+   // Button goToChat, goToWeatherBtn;
     Button goToToolbarBtn;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_profileactivity);
         //get Intent from MainActivity
         Intent loginPage = getIntent();
-        goToChat = (Button)findViewById(R.id.btnGotoChat);
+    //    goToChat = (Button)findViewById(R.id.btnGotoChat);
         String emailType = loginPage.getStringExtra("emailType");
         EditText enterEmail = (EditText)findViewById(R.id.typeEmalprofle);
         enterEmail.setText(emailType);
