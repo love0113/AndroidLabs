@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
     ImageButton takePicture;
-   // Button goToChat, goToWeatherBtn;
+   Button goToChat, goToWeatherBtn;
     Button goToToolbarBtn;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     public static final String ACTIVITY_NAME = "PROFILE_ACTIVITY";
@@ -29,7 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_profileactivity);
         //get Intent from MainActivity
         Intent loginPage = getIntent();
-    //    goToChat = (Button)findViewById(R.id.btnGotoChat);
+      goToChat = (Button)findViewById(R.id.btnGotoChat);
         String emailType = loginPage.getStringExtra("emailType");
         EditText enterEmail = (EditText)findViewById(R.id.typeEmalprofle);
         enterEmail.setText(emailType);
@@ -40,7 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
-   /*     goToChat.setOnClickListener( b -> {
+       goToChat.setOnClickListener( b -> {
 
             //Give directions to go from this page, to SecondActivity
             Intent nextPage = new Intent(ProfileActivity.this, ChatRoomActivity.class);
@@ -55,7 +55,7 @@ public class ProfileActivity extends AppCompatActivity {
             startActivityForResult(goToMenuPage, 234);
 
         });
-        */
+
 
         goToToolbarBtn = (Button)findViewById(R.id.GoToToolbarPage);
         goToToolbarBtn.setOnClickListener(c -> {
