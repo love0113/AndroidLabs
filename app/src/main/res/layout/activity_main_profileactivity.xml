@@ -112,12 +112,25 @@
 
 
     </LinearLayout>
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/GoToWeatherPage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:text="@string/GoToWeather"/>
+        <Button
+            android:id="@+id/btnGotoChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btnGotoChat" />
+
         <Button
             android:id="@+id/GoToToolbarPage"
             android:layout_width="match_parent"
@@ -127,6 +140,9 @@
             android:text="@string/GoToToolbar"
             />
     </LinearLayout>
+
+
+
 
 
 </LinearLayout>
