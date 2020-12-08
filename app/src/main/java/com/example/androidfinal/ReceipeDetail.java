@@ -1,4 +1,4 @@
-package com.example.androidlabs;
+package com.example.androidfinal;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,12 +12,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.androidlabs.ReceipeModel;
-import com.example.androidlabs.R;
+import com.example.receipeSearch.R;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.picasso.Picasso;
-
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -53,7 +51,7 @@ public class ReceipeDetail extends AppCompatActivity {
         // Get the shared prefrence editor
         sharedPreferences= PreferenceManager
                 .getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
         // Fetch the list in string
         String connectionsJSONString = sharedPreferences.getString(RECIEPE, null);
         if(connectionsJSONString!= null){
@@ -65,24 +63,24 @@ public class ReceipeDetail extends AppCompatActivity {
         // intialist the list of datamodel
 //        dataModels= new ArrayList<>();
         // Get the title from intent
-        String title = getIntent().getExtras().getString("title");
+        final String title = getIntent().getExtras().getString("title");
         // Get the ingredients from intent
-        String ingredients = getIntent().getExtras().getString("ingredients");
+        final String ingredients = getIntent().getExtras().getString("ingredients");
         // Get the href from intent
-        String href = getIntent().getExtras().getString("href");
+        final String href = getIntent().getExtras().getString("href");
         // Get the thumnail from intent
-        String thumnail = getIntent().getExtras().getString("thumnail");
+        final String thumnail = getIntent().getExtras().getString("thumnail");
         // Check if image is present
         if(thumnail.length() > 0){
             // Show image
             ImageView ivBasicImage = (ImageView) findViewById(R.id.imageviewdetail);
-            Picasso.with(getApplicationContext()).load(thumnail).into(ivBasicImage);
+            Picasso.get().load(thumnail).into(ivBasicImage); //Reference from w3school.com
         }
         // If there is favourites check for it
         if(connectionsJSONString != null) {
             Type type = new TypeToken<List<ReceipeModel>>() {
             }.getType();
-            List<ReceipeModel> connections = new Gson().fromJson(connectionsJSONString, type);
+            List<ReceipeModel> connections = new Gson().fromJson(connectionsJSONString, type); //Reference from w3school.com
             for (ReceipeModel con : connections) {
                 Log.d("Titles",con.getTitle());
                 if(con.getTitle().equals(title)){
@@ -202,5 +200,4 @@ public class ReceipeDetail extends AppCompatActivity {
         editor.putString(RECIEPE, connectionsJSONString);
         editor.commit();
     }
-} {
 }

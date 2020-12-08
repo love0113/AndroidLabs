@@ -1,5 +1,4 @@
-package com.example.androidlabs;
-
+package com.example.androidfinal;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,9 +19,9 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.androidlabs.R;
-import com.example.androidlabs.ReceipeDetail;
-import com.example.androidlabs.ReceipeModel;
+import com.example.receipeSearch.R;
+import com.example.androidfinal.ReceipeDetail;
+import com.example.androidfinal.ReceipeModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,7 +33,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class HomeFragment extends Fragment {
 

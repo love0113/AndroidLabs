@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Lab3</string>
-    <string name="login_label">请输入你的邮箱地址</string>
-    <string name="login_hint_message">请在这里输入邮箱</string>
-    <string name="password_label">请输入您的密码</string>
-    <string name="password_hint_message"> </string>
-    <string name="loginButtonLabel">你好</string>
-    <string name="your_profile">Your profile</string>
-    <string name="your_name">Your name:</string>
-    <string name="Enter_yourname_hint_message">Enter your name</string>
-    <string name="Email_label">Your email:</string>
-    <string name="Email_hint_message">Enter your email</string>
-    <string name="your_picture_label">Your Picture</string>
-    <string name="ButtonLabel"></string>
-    <string name="take_picture_label">Click the button above to take a picture</string>
+    <string name="app_name">菜单搜索</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+    <string name="nav_header_title">食谱应用</string>
+    <string name="nav_header_subtitle">搜索你喜欢的食谱</string>
+    <string name="nav_header_desc">导航标题</string>
+    <string name="action_settings">设置</string>
+    <string name="action_help">帮助</string>
+
+    <string name="searchbutton">搜索</string>
+    <string name="buttonsave">保存</string>
+    <string name="Edit_Text">输入菜谱名</string>
+    <string name="Edit_Text1">输入原料名</string>
+    <string name="menu_home">主页</string>
+    <string name="menu_gallery">收藏夹</string>
 
 </resources>

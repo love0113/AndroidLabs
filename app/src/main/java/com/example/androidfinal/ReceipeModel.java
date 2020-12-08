@@ -1,6 +1,6 @@
-package com.example.androidlabs;
+package com.example.androidfinal;
 
-public class ReceipeModel  {
+public class ReceipeModel {
     // Title of receipe
     String title;
     // Href for receipe
@@ -56,4 +56,3 @@ public class ReceipeModel  {
         this.thumbnail = thumbnail;
     }
 }
-

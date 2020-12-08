@@ -1,4 +1,4 @@
-package com.example.androidlabs;
+package com.example.androidfinal;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.example.androidlabs.R;
+import com.example.receipeSearch.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -26,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Application Bar Configuration Variable
     private AppBarConfiguration mAppBarConfiguration;
-
-
 
     // OnCreate Method For Activity
     @Override

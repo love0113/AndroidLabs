@@ -1,4 +1,4 @@
-package com.example.androidlabs;
+package com.example.androidfinal;
 
 
 import android.content.Context;
@@ -17,11 +17,11 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.androidlabs.ReceipeModel;
-import com.example.androidlabs.R;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.squareup.picasso.Picasso;
+import com.example.androidfinal.ReceipeDetail;
+import com.example.androidfinal.ReceipeModel;
+import com.example.receipeSearch.R;
+import com.google.gson.Gson; //Reference from w3school.com
+import com.google.gson.reflect.TypeToken; //Reference from w3school.com
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -92,8 +92,8 @@ public class FavFragment extends Fragment {
         // Check if string is not null
         if(connectionsJSONString!= null){
             // Creation of list from string
-            Type type = new TypeToken< List < ReceipeModel >>() {}.getType();
-            List < ReceipeModel > connections = new Gson().fromJson(connectionsJSONString, type);
+            Type type = new TypeToken< List < ReceipeModel >>() {}.getType(); //Reference from w3school.com
+            List < ReceipeModel > connections = new Gson().fromJson(connectionsJSONString, type); //Reference from w3school.com
             // Add title to list for showing in fav list
             for(ReceipeModel con : connections){
                 str.add(con.getTitle());
